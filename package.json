@@ -1,0 +1,21 @@
+{
+  "name": "@slobodafr/hive-notes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Thomas SLOBODA",
+    "email": "thomas@sloboda.fr"
+  },
+  "license": "ISC",
+  "description": "Hive Notes service",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
