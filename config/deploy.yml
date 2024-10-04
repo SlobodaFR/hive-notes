@@ -54,8 +54,8 @@ env:
 #
 ssh:
   user: debian
-  keys_only: true
-  keys: [ "~/.ssh/id_ed25519_personal" ]
+#  keys_only: true
+#  keys: [ "~/.ssh/id_ed25519_personal" ]
   config: true
   log_level: debug
 
