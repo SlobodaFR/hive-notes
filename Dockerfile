@@ -7,7 +7,12 @@ ENV HOST=${HOST}
 
 WORKDIR /app
 
-COPY ./ /app
+COPY ./package.json /app
+COPY ./tsconfig.json /app
+
+RUN npm install
+
+COPY ./src /app/src
 
 EXPOSE $PORT
 
