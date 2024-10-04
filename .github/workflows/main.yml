@@ -1,0 +1,26 @@
+name: Deploy
+on:
+    push:
+        branches:
+        - main
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+    - name: Install dependencies
+      run: gem install kamal
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Run deploy command
+      run: kamal deploy
