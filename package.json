@@ -1,10 +1,12 @@
 {
   "name": "@slobodafr/hive-notes",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "generated/index.js",
+  "types": "generated/index.d.ts",
+  "browser": "generated/index-browser.js",
   "scripts": {
     "start:dev": "nodemon --exec ts-node src/index.ts",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
   },
   "keywords": [],
   "author": {
@@ -17,6 +19,19 @@
     "@types/node": "^22.7.4",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.1",
+    "@grpc/proto-loader": "^0.7.13",
+    "@slobodafr/hive-contracts": "^1.0.2",
+    "@slobodafr/hive-database": "^1.1.1",
+    "grpc-health-check": "^2.0.2",
+    "joi": "^17.13.3",
+    "rate-limiter-flexible": "^5.0.3",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.8.0",
+    "winston": "^3.14.2"
   }
 }
