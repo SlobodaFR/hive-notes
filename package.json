@@ -18,5 +18,17 @@
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.1",
+    "@grpc/proto-loader": "^0.7.13",
+    "@slobodafr/hive-contracts": "^1.0.1",
+    "@slobodafr/hive-database": "^1.0.0",
+    "grpc-health-check": "^2.0.2",
+    "joi": "^17.13.3",
+    "rate-limiter-flexible": "^5.0.3",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.8.0",
+    "winston": "^3.15.0"
   }
 }
