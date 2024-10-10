@@ -9,10 +9,15 @@ registry:
     - KAMAL_REGISTRY_PASSWORD
 builder:
   arch: amd64
+  args:
+    NPM_TOKEN: ${NPM_TOKEN}
 env:
   clear:
     HOST: 0.0.0.0
     PORT: 4000
+proxy:
+  healthcheck:
+    path: /
 ssh:
   user: debian
   config: true

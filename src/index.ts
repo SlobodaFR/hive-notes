@@ -3,13 +3,14 @@ import { container } from "@/config/container";
 import { NoteServiceImpl } from "@/adapters/primary/grpc/NoteServiceImpl";
 import * as grpc from "@grpc/grpc-js";
 import * as protoLoader from "@grpc/proto-loader";
-import {HealthImplementation, ServingStatusMap} from "grpc-health-check";
+// @ts-ignore
+import {servingStatus, Implementation, service} from "grpc-js-health-check";
 import { Logger } from "winston";
 import path from "path";
 import {ProtoGrpcType} from "@slobodafr/hive-contracts/notes";
 
 const PROTO_PATH = path.resolve(__dirname, '..', 'node_modules', '@slobodafr', 'hive-contracts', 'notes.proto');
-const HOST = process.env?.HOST ?? 'localhost';
+const HOST = process.env?.HOST ?? '0.0.0.0';
 const PORT = Number(process.env?.PORT ?? '4000');
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
@@ -20,11 +21,11 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     oneofs: true,
 });
 
-const statusMap: ServingStatusMap = {
-    'NotesService': 'SERVING',
-    '': 'NOT_SERVING',
+const statusMap = {
+    'NotesService': servingStatus.NOT_SERVING,
+    '': servingStatus.NOT_SERVING,
 };
-const healthImpl = new HealthImplementation(statusMap);
+const healthImpl = new Implementation(statusMap);
 
 const noteProto = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
@@ -42,16 +43,22 @@ function startServer() {
         deleteNote: noteService.deleteNote.bind(noteService),
     });
 
+    console.log(`Starting gRPC server on ${HOST}:${PORT}`);
+
     server.bindAsync(
         `${HOST}:${PORT}`,
         grpc.ServerCredentials.createInsecure(),
         (error, port) => {
-            if (error) {
-                logger.error(`Failed to start gRPC server: ${error}`);
-                return;
+            try {
+                if (error) {
+                    logger.error(`Failed to start gRPC server: ${error}`);
+                    return;
+                }
+                healthImpl.setStatus('NotesService', servingStatus.SERVING);
+                logger.info(`gRPC server running on port ${port}`);
+            } catch (e) {
+                logger.error(`Failed to start gRPC server: ${e}`);
             }
-            healthImpl.setStatus('NotesService', 'SERVING');
-            logger.info(`gRPC server running on port ${port}`);
         }
     );
 }
