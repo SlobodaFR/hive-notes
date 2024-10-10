@@ -1,9 +1,7 @@
 {
   "name": "@slobodafr/hive-notes",
   "version": "1.0.0",
-  "main": "generated/index.js",
-  "types": "generated/index.d.ts",
-  "browser": "generated/index-browser.js",
+  "main": "src/index.ts",
   "scripts": {
     "start:dev": "nodemon --exec ts-node src/index.ts",
     "start": "ts-node -r tsconfig-paths/register src/index.ts"
