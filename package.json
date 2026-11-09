@@ -26,7 +26,7 @@
     "@slobodafr/hive-contracts": "^1.0.2",
     "@slobodafr/hive-database": "^1.1.1",
     "grpc-js-health-check": "^1.2.2",
-    "joi": "^17.13.3",
+    "joi": "^17.13.9",
     "rate-limiter-flexible": "^5.0.3",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
