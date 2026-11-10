@@ -9,8 +9,8 @@ registry:
     - KAMAL_REGISTRY_PASSWORD
 builder:
   arch: amd64
-  args:
-    NPM_TOKEN: ${NPM_TOKEN}
+  secrets:
+    - NPM_TOKEN
 env:
   clear:
     HOST: 0.0.0.0
