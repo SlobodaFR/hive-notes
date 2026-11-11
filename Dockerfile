@@ -9,6 +9,8 @@ ENV HOST=${HOST}
 EXPOSE $PORT
 
 WORKDIR /app
+# winston writes error.log/combined.log relative to the WORKDIR at runtime
+RUN chown node:node /app
 
 COPY ./package.json /app
 RUN --mount=type=secret,id=NPM_TOKEN \
@@ -21,5 +23,7 @@ COPY ./tsconfig.json /app
 RUN npm install
 
 COPY ./src /app/src
+
+USER node
 
 CMD ["npm", "start"]
