@@ -21,7 +21,7 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.12.1",
+    "@grpc/grpc-js": "^1.14.7",
     "@grpc/proto-loader": "^0.7.13",
     "@slobodafr/hive-contracts": "^1.0.2",
     "@slobodafr/hive-database": "^1.1.1",
